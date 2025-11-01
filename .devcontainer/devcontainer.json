@@ -1,0 +1,27 @@
+{
+  "name": "Core Service Dev Container",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "runServices": ["auth", "inventory", "postgres", "pgadmin"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vmware.vscode-spring-boot",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-spring-initializr",
+        "ms-azuretools.vscode-docker",
+        "redhat.java",
+        "ms-vscode.vscode-json",
+        "oderwat.indent-rainbow",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.configuration.updateBuildConfiguration": "automatic"
+      }
+    }
+  },
+  "forwardPorts": [8080, 8081, 5432, 5050],
+  "postCreateCommand": "mvn --version"
+}
