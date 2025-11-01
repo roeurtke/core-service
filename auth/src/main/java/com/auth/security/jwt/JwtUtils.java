@@ -58,6 +58,7 @@ public class JwtUtils {
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key())
+                .setAllowedClockSkewSeconds(300) // Allow 5 minutes clock skew
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
@@ -76,6 +77,7 @@ public class JwtUtils {
     public Claims getAllClaimsFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key())
+                .setAllowedClockSkewSeconds(300) // Allow 5 minutes clock skew
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
@@ -93,6 +95,7 @@ public class JwtUtils {
         try {
             Jwts.parserBuilder()
                     .setSigningKey(key())
+                    .setAllowedClockSkewSeconds(300) // Allow 5 minutes clock skew
                     .build()
                     .parseClaimsJws(authToken);
             return true;
