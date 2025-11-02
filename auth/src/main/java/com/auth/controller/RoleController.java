@@ -24,12 +24,15 @@ public class RoleController {
     @PostMapping
     @PreAuthorize("hasAuthority('ROLE_CREATE')")
     public Role createRole(@RequestBody Role role) {
+        if (role == null) {
+            throw new IllegalArgumentException("Role cannot be null");
+        }
         return roleRepository.save(role);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_DELETE')")
-    public void deleteRole(@PathVariable Long id) {
+    public void deleteRole(@PathVariable long id) {
         roleRepository.deleteById(id);
     }
 }

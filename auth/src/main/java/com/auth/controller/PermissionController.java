@@ -24,6 +24,9 @@ public class PermissionController {
     @PostMapping
     @PreAuthorize("hasAuthority('PERMISSION_CREATE')")
     public Permission createPermission(@RequestBody Permission permission) {
+        if (permission == null) {
+            throw new IllegalArgumentException("Permission cannot be null");
+        }
         return permissionRepository.save(permission);
     }
 }
